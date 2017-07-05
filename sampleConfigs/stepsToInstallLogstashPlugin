@@ -1,0 +1,29 @@
+# ----------------------------------------------
+# Bundle and build the plugin
+# ----------------------------------------------
+
+sudo bundle install
+gem build logstash-input-file-extended.gemspec
+# ----------------------------------------------
+
+# ----------------------------------------------
+# Install the new plugin to logstash
+# ----------------------------------------------
+
+logstash-plugin install ~/Desktop/sampleSetup/logstash-input-file-extended/logstash-input-file-extended-1.0.0.gem
+# ----------------------------------------------
+
+# ----------------------------------------------
+# Build and install filewatch
+# ----------------------------------------------
+
+
+rm -rf $LOGSTASH_HOME/vendor/bundle/jruby/1.9/gems/filewatch-0.9.0
+
+gem build filewatch.gemspec
+gem install filewatch-0.9.0.gem
+
+
+cd <HOME>/.rvm/gems/<RUBY_VERSION>/gems
+cp -r filewatch-0.9.0 <LOGSTASH_HOME>/../vendor/bundle/jruby/1.9/gems/
+cd <FILE_WATCH_HOME>
